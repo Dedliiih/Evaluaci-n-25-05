@@ -13,8 +13,8 @@ const clearErrors = () => {
 }
 
 const showError = (errorMessage, errorElement) => {
-  errorElement.innerText = errorMessage
-  errorElement.style.color = 'red'
+    errorElement.innerText = errorMessage
+    errorElement.style.color = 'red'
 }
 
 function validateName(name, errorElement) {
@@ -23,7 +23,7 @@ function validateName(name, errorElement) {
         return false
     }
 
-    const pattern = /[1-9]/g
+    const pattern = /[0-9]/g
 
     if (name.match(pattern)) {
         showError("El campo no puede contener números.", errorElement)
@@ -73,22 +73,22 @@ function validar() {
 
 
 function updatePerson(personIndex) {
-  const buttonUpdate = document.getElementById("btnActualizar")
-  const updateNameInput = document.getElementById("editarNombre")  
-  const updateAgeInput = document.getElementById("editarEdad")
-  const person = persons[personIndex]
+    const buttonUpdate = document.getElementById("btnActualizar")
+    const updateNameInput = document.getElementById("editarNombre")
+    const updateAgeInput = document.getElementById("editarEdad")
+    const person = persons[personIndex]
 
-  buttonUpdate.value = personIndex
-  updateNameInput.value = person.name
-  updateAgeInput.value = person.age
-  return;
+    buttonUpdate.value = personIndex
+    updateNameInput.value = person.name
+    updateAgeInput.value = person.age
+    return;
 }
 
 
 function updateTable() {
     const tableBody = document.getElementById("cuerpoTabla")
-    const personsRows = persons.map((person, index) => 
-    `
+    const personsRows = persons.map((person, index) =>
+        `
     <tr>
     <td>${person.name}</td>
     <td>${person.age}</td>
@@ -101,8 +101,8 @@ function updateTable() {
     </button>
     </td>
     </tr>
-    `   
-)
+    `
+    )
     tableBody.innerHTML = personsRows.join('')
     return;
 }
@@ -115,29 +115,29 @@ function confirmDeletePerson(personIndex) {
 }
 
 function deletePerson(personIndex) {
-  const person = persons[personIndex]
-  const confirmDeleteElement = document.getElementById("confirmarEliminacion")
-  confirmDeleteElement.innerHTML = `
+    const person = persons[personIndex]
+    const confirmDeleteElement = document.getElementById("confirmarEliminacion")
+    confirmDeleteElement.innerHTML = `
   <p>¿Estás seguro que deseas eliminar a: ${person.name}?</p>
   <button onclick='confirmDeletePerson(${personIndex})'>Confirmar</button>
   `
-  return;
-} 
+    return;
+}
 
 function actualizar() {
-  const newName = document.getElementById("editarNombre")
-  const newAge = document.getElementById("editarEdad")
-  const buttonUpdate = document.getElementById("btnActualizar")
+    const newName = document.getElementById("editarNombre")
+    const newAge = document.getElementById("editarEdad")
+    const buttonUpdate = document.getElementById("btnActualizar")
 
-  const updatedPerson = {
-    name: newName.value,
-    age: newAge.value
-  }
+    const updatedPerson = {
+        name: newName.value,
+        age: newAge.value
+    }
 
-  persons[buttonUpdate.value] = updatedPerson
+    persons[buttonUpdate.value] = updatedPerson
 
-  newName.value = ''
-  newAge.value = ''
-  buttonUpdate.value = ''
-  return updateTable();
+    newName.value = ''
+    newAge.value = ''
+    buttonUpdate.value = ''
+    return updateTable();
 }
